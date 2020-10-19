@@ -145,7 +145,8 @@ class Window: JFrame() {
 
             //muestra OE por formula y contador
             lEscalonado.text = "Operaciones elementales por contador en escalonamiento: ${calcularMatrizEscalonada(matrizIn)}\n" +
-                    "Operaciones elementales por fórmula en escalonamiento: ${70*n*n - 280*n + 494 + (m - n)*39}"
+                    "Operaciones elementales por fórmula en escalonamiento: ${28*n*m + 4*n + 2}\n" +
+                    "Complejidad O(N²)"
 
             //muestra matriz escalonada
             pMatrizOut.removeAll()
@@ -172,6 +173,7 @@ class Window: JFrame() {
             var c = 0
             if(tFilas.text.toInt() != tColumnas.text.toInt()){
                 JOptionPane.showMessageDialog(null, "La matriz debe ser cuadrada", "ERROR", JOptionPane.ERROR_MESSAGE)
+                lDeterminante.text = ""
             }else {
                 val matrizIn = Array(tFilas.text.toInt()) { DoubleArray(tColumnas.text.toInt()) }
                 for (i in 0 until tFilas.text.toInt()) {

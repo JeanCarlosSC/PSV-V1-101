@@ -83,8 +83,11 @@ public class Main {
 
             //itera por cada columna de la matriz
             c+=2;
-            for(int j=i; j<m; j++) {
-                c+=2;
+
+            //para hacer c constante dado diversos tamaños de matrices, contamos las OE y les quitamos las variables independientes al tamaño
+            c += 28*m;
+
+            for(int j=i; j<m; j++) {//2
 
                 //En caso de que se necesite intercambiar dos filas
                 for(int i1=i; i1<n; i1++) {
@@ -99,24 +102,21 @@ public class Main {
                 //si el pivote es cero después de organizar las filas, busca en la siguiente columna
                 //sino, procede a hacer el pivote 1 y los valores inferiores del pivote a 0
 
-                //si suponemos que se ejecuta el máximo de pivotes, entonces c suma: c+=3+3+2+(2+6)*(m-j)+(n-i-1)*11*(m-j);
-                c += 8+(m-j) * (8 + 11*(n-i-1));
-
-                if(matriz[i][j] != 0.0) { //depende de la cantidad de pivotes es decir, de la matriz
+                if(matriz[i][j] != 0.0) { //3 depende de la cantidad de pivotes es decir, es independiente del tamaño
 
                     //aquí hace al pivote 1
-                    double temp = matriz[i][j];
-                    for(int j1=j; j1<m; j1++) {
-                        matriz[i][j1] = matriz[i][j1] / temp;
+                    double temp = matriz[i][j];//3
+                    for(int j1=j; j1<m; j1++) {//valor independiente del tamaño
+                        matriz[i][j1] = matriz[i][j1] / temp;//6
                     }
 
                     //aquí hace a los valores debajo del pivote 0
-                    if(i < n-1) {
+                    if(i < n-1) {//3
                         for (int i1 = i+1; i1<n; i1++) {//n-i-1
                             temp = matriz[i1][j];//3
 
-                            for(int j1=j; j1<m; j1++) {//11(m-j)
-                                matriz[i1][j1] = matriz[i1][j1] - matriz[i][j1] * temp;
+                            for(int j1=j; j1<m; j1++) {//11(m-j) valor independiente del tamaño
+                                matriz[i1][j1] = matriz[i1][j1] - matriz[i][j1] * temp;//11
                             }
                         }
                     }
@@ -124,9 +124,7 @@ public class Main {
                     //continua el proceso con la siguiente fila
                     break;
                 }
-
             }
-
         }
 
         return c;
