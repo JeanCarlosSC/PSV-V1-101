@@ -170,20 +170,29 @@ class Window: JFrame() {
         bDeterminante.addActionListener {
             //pasa los valores ingresados a una matriz
             var c = 0
-            val matrizIn = Array(tFilas.text.toInt()) { DoubleArray(tColumnas.text.toInt()) }
-            for (i in 0 until tFilas.text.toInt()) {
-                for (j in 0 until tColumnas.text.toInt()) {
-                    matrizIn[i][j] = numbers[c].text.toDouble()
-                    c++
+            if(tFilas.text.toInt() != tColumnas.text.toInt()){
+                JOptionPane.showMessageDialog(null, "La matriz debe ser cuadrada", "ERROR", JOptionPane.ERROR_MESSAGE)
+            }else {
+                val matrizIn = Array(tFilas.text.toInt()) { DoubleArray(tColumnas.text.toInt()) }
+                for (i in 0 until tFilas.text.toInt()) {
+                    for (j in 0 until tColumnas.text.toInt()) {
+                        matrizIn[i][j] = numbers[c].text.toDouble()
+                        c++
+                    }
+                }
+
+                //muestra OE por formula y contador
+                val n = matrizIn.size
+                val texto = "Operaciones elementales en determinante por contador: ${calcularDeterminante(matrizIn)}\n" +
+                        "Operaciones elementales en determinante por fórmula: ${(22*n*n*n + 21*n*n + 17*n - 42)/ 6}\n" +
+                        "El determinante es ${"%.3f".format(Main.determinante)}\n" +
+                        "Complejidad O(N³)"
+                if(Main.determinante != 0.0) {
+                    lDeterminante.text = texto
+                }else {
+                    lDeterminante.text = ""
                 }
             }
-
-            //muestra OE por formula y contador
-            val n = matrizIn.size
-            lDeterminante.text = "Operaciones elementales en determinante por contador: ${calcularDeterminante(matrizIn)}\n" +
-                    "Operaciones elementales en determinante por fórmula: ${21*n*n - 25*n + (n-1)*(n-2)*(11*n-15)/3 + 7}\n" +
-                    "El determinante es ${"%.3f".format(Main.determinante)} " +
-                    "Complejidad O(N³)"
         }
         pOrdenMatriz.add(bDeterminante)
     }
