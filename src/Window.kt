@@ -23,7 +23,7 @@ class Window: JFrame() {
 
     private val lEscalonado = JTextArea()
     private val lDeterminante = JTextArea()
-    private val lRango = JLabel()
+    private val lRango = JTextArea()
 
     init {
         val mainBar = MainBar(1300, this, backgroundColor = cyan, fontColor = black, borderColor = black)
@@ -42,7 +42,7 @@ class Window: JFrame() {
         pDeterminante.setProperties(805, 525, 450, 160, backgroundColor = mustard, border = darkOcherBorder)
         add(pDeterminante)
 
-        lRango.setProperties(32, 32, 180, 32, fontColor = black)
+        lRango.setProperties(32, 32, 180, 64, false, background = null, border = null, foreground = black)
         pRango.add(lRango)
 
         lEscalonado.setProperties(42, 14, 166, 90, false, background = null, border = null, foreground = black)
@@ -135,7 +135,8 @@ class Window: JFrame() {
             }
 
             //muestra el resultado
-            lRango.text = "El rango de la matriz es: $rango"
+            lRango.text = "El rango de la matriz es: $rango\n" +
+                    "Complejidad O(N²)"
         }
         pRango.add(bCalcularRango)
 
