@@ -2,6 +2,7 @@ package swingRAD.mainBar
 
 import swingRAD.setProperties
 import swingRAD.*
+import java.awt.Color
 import java.awt.Image
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
@@ -9,7 +10,9 @@ import java.awt.event.MouseMotionListener
 import javax.swing.*
 import kotlin.system.exitProcess
 
-class MainBar(screenWidth: Int, private val jFrame: JFrame, move: Boolean = true): JPanel(), MouseListener, MouseMotionListener {
+class MainBar(screenWidth: Int, private val jFrame: JFrame, move: Boolean = true, backgroundColor: Color = darkGray,
+              private val fontColor: Color = gray, borderColor: Color = semiDarkGray3
+): JPanel(), MouseListener, MouseMotionListener {
     private val mainPanel = JPanel()
 
     private var iLogo = ImageIcon()
@@ -25,7 +28,8 @@ class MainBar(screenWidth: Int, private val jFrame: JFrame, move: Boolean = true
     private var y0 = 0
 
     init {
-        mainPanel.setProperties(0, 0, screenWidth, 27, darkGray, null)
+        mainPanel.setProperties(0, 0, screenWidth, 27, backgroundColor, null)
+
         if(move)
             mainPanel.addMouseMotionListener(this)
         add(mainPanel)
@@ -37,12 +41,16 @@ class MainBar(screenWidth: Int, private val jFrame: JFrame, move: Boolean = true
         mainPanel.add(lLogo)
         mainPanel.add(lTitle)
 
-        setProperties(0, 0, screenWidth, 29, semiDarkGray3, null)
+        setProperties(0, 0, screenWidth, 29, borderColor, null)
     }
 
     fun setLogo(icon: ImageIcon) {
         iLogo = ImageIcon(icon.image.getScaledInstance(16, 16, Image.SCALE_DEFAULT))
         lLogo.setProperties(5, 5, iLogo)
+    }
+
+    fun setTitle(str: String) {
+        lTitle.setProperties(400, 0, 570, 28, str, fontTitleMini, fontColor, "CENTER")
     }
 
     override fun mouseClicked(e: MouseEvent?) {
@@ -81,7 +89,4 @@ class MainBar(screenWidth: Int, private val jFrame: JFrame, move: Boolean = true
         }
     }
 
-    fun setTitle(str: String) {
-        lTitle.setProperties(400, 0, 570, 28, str, fontTitleMini, gray, "CENTER")
-    }
 }

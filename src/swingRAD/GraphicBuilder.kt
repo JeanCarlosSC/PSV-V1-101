@@ -6,10 +6,10 @@ import java.awt.event.MouseListener
 import javax.swing.*
 import javax.swing.border.Border
 
-fun JPanel.setProperties(x: Int, y: Int, width: Int, height: Int, color: Color? = semiDarkGrayBlue, border: Border? = semiDarkGray2Border,
+fun JPanel.setProperties(x: Int, y: Int, width: Int, height: Int, backgroundColor: Color? = semiDarkGrayBlue, border: Border? = semiDarkGray2Border,
                          layoutManager: LayoutManager? = null) {
     this.setBounds(x, y, width, height)
-    this.background = color
+    this.background = backgroundColor
     this.border = border
     this.layout = layoutManager
 }
@@ -75,7 +75,7 @@ fun JButton.setProperties(x: Int, y: Int, icon: Icon?, cursor: Cursor? = handCur
  */
 fun JButton.setProperties(x: Int, y: Int, width: Int, height: Int, text: String?, cursor: Cursor? = handCursor, font: Font? = fontTitleMini,
                           background: Color? = darkGray, foreground: Color? = darkWhite, border: Border? = semiDarkGray2Border,
-                          alignment: String? = "CENTER", isSolid: Boolean = true) {
+                          alignment: String? = "CENTER", isSolid: Boolean = true, backgroundEntered: Color = semiDarkGray) {
     setProperties(x, y, width, height, cursor, background, isSolid)
     this.text = text
     this.font = font
@@ -98,11 +98,11 @@ fun JButton.setProperties(x: Int, y: Int, width: Int, height: Int, text: String?
         }
 
         override fun mouseEntered(e: MouseEvent) {
-            this@setProperties.background = semiDarkGray
+            this@setProperties.background = backgroundEntered
         }
 
         override fun mouseExited(e: MouseEvent) {
-            this@setProperties.background = darkGray
+            this@setProperties.background = background
         }
     })
 }
@@ -132,13 +132,13 @@ fun JTextArea.setProperties(x: Int, y: Int, width: Int, height: Int, editable: B
 }
 
 fun JTextField.setProperties(x: Int, y: Int, width: Int, height: Int, editable: Boolean = true, text: String? = "", foreground: Color? = darkWhite,
-                            background: Color? = darkGray, font: Font? = fontText, border: Border? = semiDarkGray2Border) {
+                            backgroundColor: Color? = darkGray, font: Font? = fontText, border: Border? = semiDarkGray2Border) {
     this.setBounds(x, y, width, height)
     this.text = text
     this.isEditable = editable
     this.foreground = foreground
     this.font = font
-    this.background = background
+    this.background = backgroundColor
     this.caretColor = foreground
     this.border = border
 }

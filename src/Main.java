@@ -21,7 +21,7 @@ public class Main {
             //itera por cada columna de la matriz
             c+=2;
             for(int j=i; j<n; j++) {
-                c+=2;
+                c+=2;//(11(n-j)+ 7)(n-i-1)+5
 
                 //En caso de que se necesite intercambiar dos filas
                 for(int i1=i; i1<n; i1++) {
@@ -40,14 +40,14 @@ public class Main {
 
                     //aquí hace a los valores debajo del pivote 0
                     c+=3;
-                    for (int i1 = i+1; i1<n; i1++) {
+                    for (int i1 = i+1; i1<n; i1++) {//(11(n - j) + 7)(n-i-1)
                         c+=5;
                         double temp = matriz[i1][j] / matriz[i][j];
 
                         c+=2;
-                        for(int j1=j; j1<n; j1++) {
+                        for(int j1=j; j1<n; j1++) {//11(n - j)
                             c+=11;
-                            matriz[i1][j1] = matriz[i1][j1] - matriz[i][j1] * temp;
+                            matriz[i1][j1] = matriz[i1][j1] - matriz[i][j1] * temp;//11
                         }
                     }
 
