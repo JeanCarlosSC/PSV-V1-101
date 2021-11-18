@@ -1,28 +1,24 @@
 #include <iostream>
 using namespace std;
 
-class blockWorld {
+class BlockWorld {
 
     Array world;
 
-    constructor (int size) {
+    BlockWorld (int size) {
         world = new Array(size);
     }
 
-    int moveOnto(int a, int b) {
-        return 0;
+    void moveOnto(int a, int b) {
     }
 
-    int moveOver(int a, int b) {
-        return 0;
+    void moveOver(int a, int b) {
     }
 
-    int pileOnto(int a, int b) {
-        return 0;
+    void pileOnto(int a, int b) {
     }
 
-    int pileOver(int a, int b) {
-        return 0;
+    void pileOver(int a, int b) {
     }
 
     string toString() {
