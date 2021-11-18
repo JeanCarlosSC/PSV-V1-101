@@ -59,5 +59,4 @@ int main() {
     }
 
     cout << world.toString();
-    return 0;
 }
